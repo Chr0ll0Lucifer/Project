@@ -1,0 +1,140 @@
+body{
+    background-color: aliceblue;
+}
+nav{
+    background-color: lightblue;
+    font-size: 35px;
+    padding: 20px;
+    font-weight: bolder;
+    text-align: center;
+    
+}
+.sidenav{
+    height: 100%;
+    width: 275px;
+    position: fixed;
+    background-color: rgb(126, 166, 202);
+    padding-top: 20px;
+}
+.sidenav a, .dropdown-btn{
+    padding: 6px,8px,6px,16px;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    width:100% ;
+    text-align: left;
+    padding-left: px;
+    display: block;
+    cursor: pointer;
+    background-color: rgb(126, 166, 202);
+    border: none;
+}
+.sidenav a:hover, .dropdown-btn:hover {
+color: lightgray;
+}
+.active {
+background-color: rgb(126, 166, 202);
+color: white;
+}
+.dropdown-container {
+display: none;
+background-color: rgb(126, 166, 202);
+padding-left: 20px;
+}
+.fa-caret-down {
+float: right;
+padding-right: 8px;
+}
+
+.drop{
+    float: right;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: lightblue;
+    min-width: 100px;
+    z-index: 1;
+}
+
+
+ 
+img{
+    margin-left: 12%;
+    height: 310px;
+    width: 320px;
+
+}
+.main{
+    margin-left: 15%;
+    margin-top: 8px;
+    background-color: rgb(156, 171, 185);
+    border-radius: 30px;
+    width: 85%;
+    display: grid;
+ grid-template-columns: 1fr 1fr ;
+ column-gap: 5px;
+}
+
+.text{
+    font-size: 55px;
+    margin-left: -30%;
+}
+
+
+h2{
+    font-size: 55px;
+}
+
+
+
+label{
+    font-size: 23px;
+}
+input[type=text] , input[type=password],input[type=email],input[type=tel],input[type=number],input[type=radio],input[type=date]{
+    font-size: 20px;
+}
+
+select{
+    font-size: 20px;
+}
+legend{
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.content{
+    margin-left: 5px;
+}
+
+button{
+    font-size: 20px;
+}
+fieldset{
+    width: 81%;
+    margin-left: 16%;
+    margin-top: 13px;
+}
+
+.smanage{
+    margin-left: 15%;
+}
+
+table{
+    border-radius: 10px;
+}
+.table-content{
+    margin-left: 17%;
+    
+}
+h3{
+    margin-left: 17%;
+    font-size: 35px;
+}
+
+td{
+    font-size: 28px;
+}
+
