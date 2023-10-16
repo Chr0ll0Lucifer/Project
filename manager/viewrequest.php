@@ -31,9 +31,11 @@ include('connection.php');
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
+        <a href="apply.php">Apply leave</a><br>
             <a href="newrequest.php">New requests</a><br>
-            <a href="#">Approved leave</a><br>
-            <a href="#">Rejected leave</a><br>
+            <a href="approvedleave.php">Approved leave</a><br>
+            <a href="rejectedleave.php">Rejected leave</a><br>
+            <a href="leavehistory.php">Leave history</a><br>
         </div><br>
 </div>
 
@@ -49,7 +51,7 @@ if (mysqli_num_rows($result) > 0){
 
 <fieldset>
     <legend>View Request</legend>
-    <form name="viewform" action="viewrequestprocess.php" method="post" onsubmit="">
+    <form name="viewform" action="viewrequestprocess.php" method="post" onsubmit="return validate()">
         <div class="content">
             <br>
             <label>Emp ID:</label>
@@ -59,6 +61,7 @@ if (mysqli_num_rows($result) > 0){
             $result1 = mysqli_query($con,"SELECT * FROM employees where emp_id='". $row['emp_id']."'"); 
             $row1 = mysqli_fetch_array($result1);
             ?>
+            <input type="hidden" name="leaveid" value="<?php echo $_GET['id']?>">
             <input type="text" name="staffname" value="<?php echo $row1["Firstname"]; ?>" disabled><br><br>
             <label>Leave type:</label>
             <input type="text" name="leavename" value="<?php echo $row["Leave_type"]; ?>" disabled>
@@ -73,11 +76,13 @@ if (mysqli_num_rows($result) > 0){
             <label>End date:</label>
             <input type="date" name="end" value="<?php echo $row["End_date"]; ?>" disabled><br><br>
             <label>Status:</label>
-            <input type="radio"  name="status" value="Approve" <?php echo $row["Status"]=="Approve"?"checked":"" ?>><p>Approve</p>
-            <input type="radio"  name="status" value="Reject" <?php echo $row["Status"]=="Reject"?"checked":"" ?>><p>Reject</p>
+            <input type="radio"  name="status" value="Approve" id="r1" <?php echo $row["Status"]=="Approve"?"checked":"" ?>><p>Approve</p>
+            <input type="radio"  name="status" value="Reject" id="r2" <?php echo $row["Status"]=="Reject"?"checked":"" ?>><p>Reject</p><br><br>
+            <label>Response reason:</label>
+            <textarea name="response_reason" rows="6" cols="40"></textarea>
             <br><br><br>
 
-            <button type="submit">Edit</button>
+            <button type="submit">Submit</button>
 </form>
 </fieldset>
 <?php
@@ -129,4 +134,18 @@ if (mysqli_num_rows($result) > 0){
         }
       });
     }
+    
+    function validate(){
+      var r1 = document.viewform.r1.checked;
+            var r2 = document.viewform.r2.checked;
+                if (r1==false && r2==false){
+                    alert("Please select a respond.");
+                    return false;
+    }
+    var reason=document.viewform.response_reason.value;
+                if (reason==null || reason==""){
+                    alert("Please fill response reason.");
+                    return false;
+                } 
+  }
   </script>

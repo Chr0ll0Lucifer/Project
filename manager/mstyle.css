@@ -94,6 +94,9 @@ label{
 input[type=text] , input[type=password],input[type=email],input[type=tel],input[type=number],input[type=radio],input[type=date]{
     font-size: 20px;
 }
+input[type=radio]{
+    font-size: 30px;
+}
 
 legend{
     font-size: 35px;
@@ -106,6 +109,9 @@ fieldset{
 }
 .content{
     margin-left: 5px;
+}
+.content select{
+    font-size: 20px;;
 }
 button{
     font-size: 20px;
@@ -137,4 +143,31 @@ td{
     font-size: 20px;
     display: inline-block;
  }
+
+ .leave-boxes {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2%;
+    margin-left: 17%;
+}
+
+.leave-box {
+    text-align: center;
+    padding: 10px;
+    width: 290px;
+    height: 150px;
+    border: 1px solid black;
+    background-color:lightblue;
+    border-radius: 15px;
+}
+
+.leave-box p {
+    font-size: 35px;
+   margin-top: -15px;
+    
+}
+.demo{
+    margin-left: 22%;
+ }
+
 

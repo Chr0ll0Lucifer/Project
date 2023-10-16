@@ -28,9 +28,11 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
+        <a href="apply.php">Apply leave</a><br>
             <a href="newrequest.php">New requests</a><br>
-            <a href="#">Approved leave</a><br>
-            <a href="#">Rejected leave</a><br>
+            <a href="approvedleave.php">Approved leave</a><br>
+            <a href="rejectedleave.php">Rejected leave</a><br>
+            <a href="leavehistory.php">Leave history</a><br>
         </div><br>
 </div>
 
@@ -56,6 +58,9 @@
             <input type="date"  name="dob">
             <label>Phone:</label>
             <input type="tel"  name="phone"><br><br><br>
+            <input type="text" id="casual" name="casual" value="10" required style="display:none;">
+            <input type="text" id="sick" name="sick" value="10" required style="display:none;">
+            <input type="text" id="medical" name="medical" value="56" required style="display:none;">
             
             <br><br><br><br>
             <button id="submit" type="submit">Add Staff</button>

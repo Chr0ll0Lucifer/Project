@@ -26,9 +26,11 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
+        <a href="apply.php">Apply leave</a><br>
             <a href="newrequest.php">New requests</a><br>
-            <a href="#">Approved leave</a><br>
-            <a href="#">Rejected leave</a><br>
+            <a href="approvedleave.php">Approved leave</a><br>
+            <a href="rejectedleave.php">Rejected leave</a><br>
+            <a href="leavehistory.php">Leave history</a><br>
         </div><br>
 </div>
 

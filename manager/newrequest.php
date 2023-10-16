@@ -1,5 +1,7 @@
 <?php
+session_start();
 include('connection.php');
+$empId = $_SESSION['uid'];
 
 ?>
 <html>
@@ -31,9 +33,11 @@ include('connection.php');
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
+        <a href="apply.php">Apply leave</a><br>
             <a href="newrequest.php">New requests</a><br>
-            <a href="#">Approved leave</a><br>
-            <a href="#">Rejected leave</a><br>
+            <a href="approvedleave.php">Approved leave</a><br>
+            <a href="rejectedleave.php">Rejected leave</a><br>
+            <a href="leavehistory.php">Leave history</a><br>
         </div><br>
     </div>
 
@@ -43,7 +47,7 @@ include('connection.php');
 <?php
   
 
-$result = mysqli_query($con,"SELECT * FROM leaves");
+$result = mysqli_query($con,"SELECT * FROM leaves WHERE emp_id = '$empId' AND Status = 'Pending'");
 $status = 0;
 if (mysqli_num_rows($result) > 0){?>
 
@@ -82,6 +86,10 @@ if (mysqli_num_rows($result) > 0){?>
                 }
                 ?>
   <?php      
+}
+else{
+  
+  echo '<h2 style="margin-left: 22%;">No new request....</h2>';
 }
 ?>
 </table> 

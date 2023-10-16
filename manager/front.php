@@ -72,7 +72,7 @@ h2,h1{
             <input type="password" placeholder="Enter password" name="password">
             <br><br><br><center><button type="submit">Login</button></center>
             <br><br>
-           <a href="#"><center>Forgot password?</center></a>
+        
         </div>
     </form>
 
