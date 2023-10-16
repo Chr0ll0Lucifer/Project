@@ -1,6 +1,11 @@
+<?php
+session_start();
+include('connection.php');
+
+?>
 <html>
     <head>
-        <title>Staff Management</title>
+        <title>Employee Dashborad</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel ="stylesheet" href="style.css">
     </head>
@@ -9,11 +14,12 @@
 <body>
     <nav>Employee Leave Management System
       <button  class="drop" onclick="window.location.href='logout.php';">Logout
-      </button>
+    </button>      
     </nav>
 
+
     <div class="sidenav">
-        <a href ="companydashboard.php">Dashboard</a><br>
+    <a href ="companydashboard.php">Dashboard</a><br>
         <button class="dropdown-btn">Manager
             <i class="fa fa-caret-down"></i>
         </button>
@@ -22,6 +28,7 @@
             <a href="editform.php">View</a><br>
             <a href="newrequest.php">Leave request</a><br>
             <a href="managerleavehistory.php">Leave history</a>
+
         </div><br>
         <button class="dropdown-btn">Employee
             <i class="fa fa-caret-down"></i>
@@ -31,71 +38,55 @@
             <a href="employeeleavehistory.php">Leave History</a>
         </div><br>
         <br>
-    
-</div>
-<div class="manage">
-    <h3>View Employee Data</h3>
-</div>
+    </div>
 
+    <h3>Leave History</h3>
 <?php
-include('connection.php');
+     $uid = $_SESSION['uid'];
+  $sql = "SELECT * FROM managerleaves ";
+  $result = mysqli_query($con, $sql);
+  $status = 0;
+  if (mysqli_num_rows($result) > 0 ) { ?>
+  
+  <form action="" method="POST"> 
+      
+  <div class="table-content">
+      <table border = "2" cellpadding = "10px" cellspacing="7px" width = "100%">
+            <tr>
+              <td>M_ID</td>
+              <td>Leave type</td>
+              <td>Applied date</td>
+              <td>Start date</td>
+              <td>End date</td>
+              <td>No_of_days</td>
+              <td>Description</td>
+              <td>Status</td>
+              
+            <tr>
 
-$result = mysqli_query($con,"SELECT * FROM employees");
-?>
-
-<html>
- <head>
-   <title> View employee data</title>
- </head>
-<body>
-<?php
-if (mysqli_num_rows($result) > 0){?>
-
-<form action="" method="POST"> 
-    
-<div class="table-content">
-    <table border = "2" cellpadding = "7px" cellspacing="5px">
-          <tr>
-            <td>Emp_id</td>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Email ID</td>
-            <td>Password </td>
-            <td>Address</td>
-            <td>Gender</td>
-            <td>DOB</td>
-            <td>Phone No.</td>
-          </tr>
-                <?php
+            <?php
                 $i=0;
                 while($row = mysqli_fetch_array($result)) {
                 ?>
           <tr>
-            <td><?php echo $row["emp_id"]; ?></td>
-            <td><?php echo $row["Firstname"]; ?></td>
-            <td><?php echo $row["Lastname"]; ?></td>
-            <td><?php echo $row["Email"]; ?></td>
-            <td><?php echo $row["Password"]; ?></td>
-            <td><?php echo $row["Address"]; ?></td>
-            <td><?php echo $row["Gender"]; ?></td>
-            <td><?php echo $row["DOB"]; ?></td>
-            <td><?php echo $row["Phone"]; ?></td>
+            <td><?php echo $row["M_id" ]; ?></td>
+            <td><?php echo $row["Leave_type" ]; ?></td>    
+            <td><?php echo $row["Applied_date" ]; ?></td>  
+            <td><?php echo $row["Start_date" ]; ?></td>  
+            <td><?php echo $row["End_date" ]; ?></td>  
+            <td><?php echo $row["No_of_days" ]; ?></td>
+            <td><?php echo $row["Description" ]; ?></td>
+            <td><?php echo $row["Status" ]; ?></td>
+            
             </tr>
-                <?php
+            <?php
                 $i++;
                 }
                 ?>
-    </table>
-            
-</div>
-
- <?php
-}
-else
-{
-    echo "No result found";
+  <?php      
 }
 ?>
+</table> 
 
 <script>
     var dropdown = document.getElementsByClassName("dropdown-btn");
@@ -112,6 +103,6 @@ else
         }
       });
     }
-    </script>
- </body>
+  </script>
+</body> 
 </html>

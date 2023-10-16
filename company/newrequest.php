@@ -1,6 +1,11 @@
+<?php
+session_start();
+include('connection.php');
+$managerId = $_SESSION['userid'];
+?>
 <html>
     <head>
-        <title>Staff Management</title>
+        <title>New Requests</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel ="stylesheet" href="style.css">
     </head>
@@ -9,11 +14,12 @@
 <body>
     <nav>Employee Leave Management System
       <button  class="drop" onclick="window.location.href='logout.php';">Logout
-      </button>
+    </button>      
     </nav>
 
+
     <div class="sidenav">
-        <a href ="companydashboard.php">Dashboard</a><br>
+    <a href ="companydashboard.php">Dashboard</a><br>
         <button class="dropdown-btn">Manager
             <i class="fa fa-caret-down"></i>
         </button>
@@ -22,6 +28,7 @@
             <a href="editform.php">View</a><br>
             <a href="newrequest.php">Leave request</a><br>
             <a href="managerleavehistory.php">Leave history</a>
+
         </div><br>
         <button class="dropdown-btn">Employee
             <i class="fa fa-caret-down"></i>
@@ -31,78 +38,63 @@
             <a href="employeeleavehistory.php">Leave History</a>
         </div><br>
         <br>
-    
+    </div>
+
+
+    <div class="manage">
+    <h3>New Requests</h3>
 </div>
-<div class="manage">
-    <h3>Manager Management</h3>
-</div>
-
 <?php
-include('connection.php');
+  
 
-$result = mysqli_query($con,"SELECT * FROM manager");
-?>
-
-<html>
- <head>
-   <title> Update data</title>
- </head>
-<body>
-<?php
+$result = mysqli_query($con,"SELECT * FROM managerleaves WHERE M_id = '$managerId' AND Status = 'Pending'");
+$status = 0;
 if (mysqli_num_rows($result) > 0){?>
 
-<form action="editmanager.php" method="POST"> 
+<form action="viewrequest.php" method="POST"> 
     
 <div class="table-content">
-    <table border = "2" cellpadding = "7px" cellspacing="5px">
+    <table border = "2" cellpadding = "10px" cellspacing="7px" width = "90%">
           <tr>
-            <td>M_id</td>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Email ID</td>
-            <td>Password </td>
-            <td>Address</td>
-            <td>Gender</td>
-            <td>DOB</td>
-            <td>Phone No.</td>
-            <td>Update</td>
-            <td>Remove</td>
+            <td>ManagerID</td>
+            <td>Staff name</td>
+            <td>Leave type</td>
+            <td>Applied date</td>
+            <td>View </td>
+            
           </tr>
-                <?php
+          <?php
                 $i=0;
                 while($row = mysqli_fetch_array($result)) {
                 ?>
           <tr>
-            <td><?php echo $row["M_id"]; ?></td>
-            <td><?php echo $row["Firstname"]; ?></td>
-            <td><?php echo $row["Lastname"]; ?></td>
-            <td><?php echo $row["Email"]; ?></td>
-            <td><?php echo $row["Password"]; ?></td>
-            <td><?php echo $row["Address"]; ?></td>
-            <td><?php echo $row["Gender"]; ?></td>
-            <td><?php echo $row["DOB"]; ?></td>
-            <td><?php echo $row["Phone"]; ?></td>
-            <td><a href="editmanager.php?id=<?php echo $row["M_id"]; ?>">Edit</a></td>
-            <td><a href="delete.php?M_id=<?php echo $row["M_id"]; ?>">Delete</a></td>
-            <!-- <td><button onclick="delete.php?emp_id=<?php echo $row['emp_id'];?>"><i class="fa fa-trash"></i></button></a></td> -->
-          </tr>
-                <?php
+            <td><?php echo $row["M_id" ]; ?></td>
+            
+            <?php 
+            $result1 = mysqli_query($con,"SELECT * FROM manager where M_id='". $row['M_id']."'"); 
+            $row1 = mysqli_fetch_array($result1);
+            ?>
+
+            <td><?php echo $row1['Firstname']; ?></td>
+            <td><?php echo $row["Leave_type" ]; ?></td>  
+            <td><?php echo $row["Applied_date" ]; ?></td>           
+            <td><a href="viewrequest.php?id=<?php echo $row["ID"]; ?>">View</a></td>
+            
+        </tr>
+            <?php
                 $i++;
                 }
                 ?>
-    </table>
-            
-</div>
-
- <?php
+  <?php      
 }
-else
-{
-    echo "No result found";
+else{
+  echo '<div class = "demo">';
+  echo '<h2>No new request....</h2>';
 }
 ?>
+</table> 
 
-<script>
+    <script>
     var dropdown = document.getElementsByClassName("dropdown-btn");
     var i;
     
@@ -117,6 +109,6 @@ else
         }
       });
     }
-    </script>
- </body>
+  </script>
+</body> 
 </html>

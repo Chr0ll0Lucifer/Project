@@ -2,7 +2,7 @@
     <head>
         <title>Edit Staff</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel ="stylesheet" href="mstyle.css">
+        <link rel ="stylesheet" href="style.css">
     </head>
     
 
@@ -14,20 +14,21 @@
 
     <div class="sidenav">
         <a href ="companydashboard.php">Dashboard</a><br>
-        <a href ="leavetype.php">Leave type</a><br>
         <button class="dropdown-btn">Manager
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
             <a href="addmanager.php">Add</a><br>
-            <a href="editform.php">Edit</a>
+            <a href="editform.php">View</a><br>
+            <a href="newrequest.php">Leave request</a><br>
+            <a href="managerleavehistory.php">Leave history</a>
         </div><br>
         <button class="dropdown-btn">Employee
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
             <a href="view.php">View</a><br>
-            <a href="#">Leave History</a>
+            <a href="employeeleavehistory.php">Leave History</a>
         </div><br>
         <br>
     </div>

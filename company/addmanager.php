@@ -2,7 +2,7 @@
     <head>
         <title>Add Manager</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel ="stylesheet" href="mstyle.css">
+        <link rel ="stylesheet" href="style.css">
     </head>
     
 
@@ -15,20 +15,22 @@
 
     <div class="sidenav">
         <a href ="companydashboard.php">Dashboard</a><br>
-        <a href ="leavetype.php">Leave type</a><br>
         <button class="dropdown-btn">Manager
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
             <a href="addmanager.php">Add</a><br>
-            <a href="editform.php">Edit</a>
+            <a href="editform.php">View</a><br>
+            <a href="newrequest.php">Leave request</a><br>
+            <a href="managerleavehistory.php">Leave history</a>
+
         </div><br>
         <button class="dropdown-btn">Employee
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
             <a href="view.php">View</a><br>
-            <a href="#">Leave History</a>
+            <a href="employeeleavehistory.php">Leave History</a>
         </div><br>
         <br>
     </div>
@@ -55,6 +57,9 @@
             <input type="date"  name="dob">
             <label>Phone:</label>
             <input type="tel"  name="phone"><br><br><br>
+            <input type="text" id="casual" name="casual" value="10" required style="display:none;">
+            <input type="text" id="sick" name="sick" value="10" required style="display:none;">
+            <input type="text" id="medical" name="medical" value="56" required style="display:none;">
             
             <br><br><br><br>
             <button id="submit" type="submit">Add Manager</button>
