@@ -25,12 +25,13 @@ include('connection.php');
         </button>
         <div class="dropdown-container">
             <a href="apply.php">Apply leave</a><br>
-            <a href="#">Leave History</a>
+            <a href="leavehistory.php">Leave History</a>
         </div><br>
         <br>
     </div>
 
     <h3>Leave History</h3>
+   
 <?php
      $uid = $_SESSION['uid'];
   $sql = "SELECT * FROM leaves WHERE emp_id = '" . $uid . "'";
@@ -38,7 +39,7 @@ include('connection.php');
   $status = 0;
   if (mysqli_num_rows($result) > 0 ) { ?>
   
-  <form action="" method="POST"> 
+  <form action="update_leave_request.php" method="POST"> 
       
   <div class="table-content">
       <table border = "2" cellpadding = "10px" cellspacing="7px" width = "100%">
@@ -49,6 +50,7 @@ include('connection.php');
               <td>Applied date</td>
               <td>Start date</td>
               <td>End date</td>
+              <td>Response reason</td>
               <td>Cancel</td>
               <td>Update</td>
             <tr>
@@ -64,9 +66,10 @@ include('connection.php');
             <td><?php echo $row["Applied_date" ]; ?></td>  
             <td><?php echo $row["Start_date" ]; ?></td>  
             <td><?php echo $row["End_date" ]; ?></td>  
+            <td><?php echo $row["Response_reason" ]; ?></td> 
 
-            <td><a href="update_leave_request.php?status=cancelled">Cancel Request</a></td>
-            <td><a href="update_leave_request.php?status=update">Update Request</a></td> 
+            <td><a href="cancel_leave_request.php?id=<?php echo $row['ID']; ?>&status=cancelled">Cancel Request</a></td>
+            <td><a href="update_leave_request.php?id=<?php echo $row['ID']; ?>&status=update">Update Request</a></td>
             </tr>
             <?php
                 $i++;

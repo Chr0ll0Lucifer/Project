@@ -7,7 +7,7 @@ include('connection.php');
     <head>
         <title>Apply from</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel ="stylesheet" href="mstyle.css">
+        <link rel ="stylesheet" href="style.css">
     </head>
     
 
@@ -140,6 +140,9 @@ include('connection.php');
                 var formattedDate = currentDate.toISOString().slice(0, 10);
                 document.getElementById("appliedDate").value = formattedDate;
           }
+          
+
+          
   </script>
 
 
